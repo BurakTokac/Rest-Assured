@@ -1,11 +1,4 @@
 
-
-
-
-
-
-
-
                 firstName Mark
                 batch 13
                 major math
