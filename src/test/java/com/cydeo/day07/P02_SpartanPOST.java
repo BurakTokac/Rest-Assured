@@ -6,6 +6,9 @@ import io.restassured.path.json.JsonPath;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import static io.restassured.RestAssured.*;
 import static org.junit.jupiter.api.Assertions.*;
 public class P02_SpartanPOST extends SpartanTestBase {
@@ -73,6 +76,47 @@ public class P02_SpartanPOST extends SpartanTestBase {
          */
         //what happens if we run again? --> it will create new spartan with different ID
 
+
+
+    }
+
+    @DisplayName("POST spartan with Map body")
+    @Test
+    public void test2() {
+
+        Map<String,Object> requestBody=new LinkedHashMap<>();
+        requestBody.put("name","James Bond");
+        requestBody.put("gender","Male");
+        requestBody.put("phone",1234567890l);
+
+        // Map<String,Object> spartanMap= SpartanUtil.getSpartanAsMap();
+        // Can we add more info ---> Do we have right to add based on doc --> No . we cant
+
+        String expectedMessage="A Spartan is Born!";
+
+
+        // body(requestBody) --> is doind serilization behind the scene to send data in JSON format
+        // to do serilization we need to one the ObjectMapper ( Jackson / Gson )
+
+        JsonPath jsonPath = given().accept(ContentType.JSON).log().body()// API send me response in JSON format
+                .contentType(ContentType.JSON) // API I am sending body in JSON format
+                .body(requestBody).
+                        when().post("/api/spartans").prettyPeek().
+                then().statusCode(201)
+                .contentType("application/json").extract().jsonPath();
+
+
+        assertEquals(expectedMessage,jsonPath.getString("success"));
+        assertEquals("James Bond",jsonPath.getString("data.name"));
+        assertEquals("Male",jsonPath.getString("data.gender"));
+        assertEquals(1234567890l,jsonPath.getLong("data.phone"));
+
+        // What if I want to get id
+        int id = jsonPath.getInt("data.id");
+        System.out.println("id = " + id);
+
+
+        // Can we create SpartanUtil to create dynamic Spartan as Map to use in request
 
 
     }
