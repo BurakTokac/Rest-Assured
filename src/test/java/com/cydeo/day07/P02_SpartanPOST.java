@@ -138,7 +138,7 @@ public class P02_SpartanPOST extends SpartanTestBase {
         String expectedMessage="A Spartan is Born!";
 
 
-        // body(requestBody) --> is doind serilization behind the scene to send data in JSON format
+        // body(requestBody) --> is doing serilization behind the scene to send data in JSON format
         // to do serilization we need to one the ObjectMapper ( Jackson / Gson )
 
         JsonPath jsonPath = given().accept(ContentType.JSON).log().body()// API send me response in JSON format
@@ -152,6 +152,13 @@ public class P02_SpartanPOST extends SpartanTestBase {
         // What if I want to get id
         int id = jsonPath.getInt("data.id");
         System.out.println("id = " + id);
+
+
+
+        assertEquals(expectedMessage,jsonPath.getString("success"));
+        assertEquals(requestBody.getName(),jsonPath.getString("data.name"));
+        assertEquals(requestBody.getGender(),jsonPath.getString("data.gender"));
+        assertEquals(requestBody.getPhone(),jsonPath.getLong("data.phone"));
 
 
         // Can we create SpartanUtil to create dynamic Spartan as Map to use in request
