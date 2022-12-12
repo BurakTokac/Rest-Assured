@@ -1,5 +1,6 @@
 package com.cydeo.day07;
 
+import com.cydeo.pojo.Student;
 import com.cydeo.utilities.CydeoTrainingTestBase;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -9,6 +10,8 @@ import org.junit.jupiter.api.Test;
 
 
 import static io.restassured.RestAssured.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class P01_CydeoTrainingDeserializationPOJO extends CydeoTrainingTestBase {
 
 
@@ -42,6 +45,14 @@ public class P01_CydeoTrainingDeserializationPOJO extends CydeoTrainingTestBase 
                 .statusCode(200)
                 .extract().jsonPath();
 
+        Student student = jsonPath.getObject("students[0]", Student.class);
+
+        System.out.println(student);
+
+        /*
+
+
+         */
 
 
 
