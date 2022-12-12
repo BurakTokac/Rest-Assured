@@ -78,6 +78,11 @@ public class P03_SpartanPUTPATCHDELETE extends SpartanTestBase {
         when().get("/api/spartans/{id}").
         then().statusCode(404);
 
+        //Create a DB connection
+        //Write Query
+        // select * from spartans
+        // where spartan_id=202;
+
 
     }
 
