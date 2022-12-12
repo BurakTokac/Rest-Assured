@@ -49,10 +49,19 @@ public class P01_CydeoTrainingDeserializationPOJO extends CydeoTrainingTestBase 
 
         System.out.println(student);
 
-        /*
+
+        assertEquals("Mark",student.getFirstName());
+        assertEquals(13,student.getBatch());
+        assertEquals("math",student.getMajor());
+
+        assertEquals("mark@email.com",student.getContact().getEmailAddress());
+        assertEquals("Cydeo",student.getCompany().getCompanyName());
+
+        assertEquals("777 5th Ave",student.getCompany().getAddress().getStreet());
+        assertEquals(33222,student.getCompany().getAddress().getZipCode());
 
 
-         */
+
 
 
 
