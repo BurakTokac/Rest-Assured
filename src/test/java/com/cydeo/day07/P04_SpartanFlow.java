@@ -59,7 +59,7 @@ public class P04_SpartanFlow extends SpartanTestBase {
                     - Use your googling skills
                     - How to run Junit5 Tests in order  ?
 
-       if you need to carry data between HTTP Request use Java knowledge
+
 
      */
 
