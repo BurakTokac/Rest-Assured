@@ -107,9 +107,9 @@ public class P02_SpartanPOST extends SpartanTestBase {
 
 
         assertEquals(expectedMessage,jsonPath.getString("success"));
-        assertEquals("James Bond",jsonPath.getString("data.name"));
-        assertEquals("Male",jsonPath.getString("data.gender"));
-        assertEquals(1234567890l,jsonPath.getLong("data.phone"));
+        assertEquals(requestBody.get("name"),jsonPath.getString("data.name"));
+        assertEquals(requestBody.get("gender"),jsonPath.getString("data.gender"));
+        assertEquals(requestBody.get("phone"),jsonPath.getLong("data.phone"));
 
         // What if I want to get id
         int id = jsonPath.getInt("data.id");
