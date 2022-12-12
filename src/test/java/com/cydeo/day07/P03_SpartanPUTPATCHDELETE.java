@@ -42,7 +42,7 @@ public class P03_SpartanPUTPATCHDELETE extends SpartanTestBase {
 
         // just like we did in POST we can use other options as well (String,POJO )
         Map<String,Object> requestBody=new LinkedHashMap<>();
-        requestBody.put("name","James PATCH");
+        requestBody.put("name","James Bond PATCH");
 
 
         // PATCH to update existing record partially.So we need to existing record
