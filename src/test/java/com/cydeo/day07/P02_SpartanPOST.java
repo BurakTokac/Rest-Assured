@@ -1,5 +1,6 @@
 package com.cydeo.day07;
 
+import com.cydeo.pojo.Spartan;
 import com.cydeo.utilities.SpartanTestBase;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -110,6 +111,43 @@ public class P02_SpartanPOST extends SpartanTestBase {
         assertEquals(requestBody.get("name"),jsonPath.getString("data.name"));
         assertEquals(requestBody.get("gender"),jsonPath.getString("data.gender"));
         assertEquals(requestBody.get("phone"),jsonPath.getLong("data.phone"));
+
+        // What if I want to get id
+        int id = jsonPath.getInt("data.id");
+        System.out.println("id = " + id);
+
+
+        // Can we create SpartanUtil to create dynamic Spartan as Map to use in request
+
+
+    }
+
+
+    @DisplayName("POST spartan with Spartan POJO body")
+    @Test
+    public void test3() {
+
+        Spartan requestBody=new Spartan();
+        requestBody.setName("John Wick");
+        requestBody.setGender("Male");
+        requestBody.setPhone(1234567890l);
+
+        System.out.println("requestBody = " + requestBody);
+
+
+        String expectedMessage="A Spartan is Born!";
+
+
+        // body(requestBody) --> is doind serilization behind the scene to send data in JSON format
+        // to do serilization we need to one the ObjectMapper ( Jackson / Gson )
+
+        JsonPath jsonPath = given().accept(ContentType.JSON).log().body()// API send me response in JSON format
+                .contentType(ContentType.JSON) // API I am sending body in JSON format
+                .body(requestBody).
+                when().post("/api/spartans").prettyPeek().
+                then().statusCode(201)
+                .contentType("application/json").extract().jsonPath();
+
 
         // What if I want to get id
         int id = jsonPath.getInt("data.id");
