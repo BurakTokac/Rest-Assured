@@ -58,4 +58,29 @@ public class P03_SpartanPUTPATCHDELETE extends SpartanTestBase {
         // Create a GET method with same ID to see is it updated .
 
     }
+
+
+    @DisplayName("DELETE  Single Spartan ")
+    @Test
+    public void test3() {
+
+
+        int id=202;
+
+        given().pathParam("id",id)
+                .when().delete("/api/spartans/{id}").
+                then().statusCode(204);
+
+        //use get to see 404
+
+        given().accept(ContentType.JSON)
+                .pathParam("id",id).
+        when().get("/api/spartans/{id}").
+        then().statusCode(404);
+
+
+    }
+
+
+
 }
