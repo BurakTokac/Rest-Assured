@@ -165,4 +165,45 @@ public class P02_SpartanPOST extends SpartanTestBase {
 
 
     }
+
+    @DisplayName("POST spartan with Spartan POJO body and GET same spartan")
+    @Test
+    public void test4() {
+
+        Spartan requestBody=new Spartan();
+        requestBody.setName("John Wick");
+        requestBody.setGender("Male");
+        requestBody.setPhone(1234567890l);
+
+        System.out.println("requestBody = " + requestBody);
+
+        // POST SPARTAN
+        JsonPath jsonPath = given().accept(ContentType.JSON).log().body()
+                .contentType(ContentType.JSON)
+                .body(requestBody).
+                when().post("/api/spartans").prettyPeek().
+                then().statusCode(201)
+                .contentType("application/json").extract().jsonPath();
+
+
+        // What if I want to get id
+        int idFromPOST = jsonPath.getInt("data.id");
+        System.out.println("id = " + idFromPOST);
+
+        // GET SAME SPARTAN WITH SAME ID THAT WE GET FROM POST RESPONSE
+        Spartan spartanGET = given().accept(ContentType.JSON)
+                .pathParam("id", idFromPOST).
+                when().get("/api/spartans/{id}").
+                then().statusCode(200).extract().jsonPath().getObject("", Spartan.class);
+
+        System.out.println("spartanGET = " + spartanGET);
+
+        // verify names are matcching
+        assertEquals(requestBody.getName(),spartanGET.getName());
+
+
+        // Can we create SpartanUtil to create dynamic Spartan as Map to use in request
+
+
+    }
 }
