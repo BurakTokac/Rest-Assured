@@ -202,7 +202,6 @@ public class P02_SpartanPOST extends SpartanTestBase {
         assertEquals(requestBody.getName(),spartanGET.getName());
 
 
-        // Can we create SpartanUtil to create dynamic Spartan as Map to use in request
 
 
     }
