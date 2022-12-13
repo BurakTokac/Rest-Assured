@@ -74,14 +74,20 @@ public class P01_SpartanAuthTest extends SpartanAuthTestBase {
      *   -- Create SpartanUtil Class
      *             public static Map<String,Object>  SpartanUtil.getRandomSpartan(){
      *                  Map<String,Object> spartanMap=new HashMap();
+     *                  spartanMap.put("name",faker.funnyName());
      *
      *                  use Faker class to create each time differetn spartan information
      *
      *                  return spartanMap;
      *              }
      *
+     *               public static void  GETSpartans (String role,String password,int statusCode,int id){
      *
+     *                 given().pathParam("id",id)
+     *                 .auth().basic(role,password).
+     *                 when().delete("/api/spartans/{id}").then().statusCode(statusCode);
      *
+     *               }
      */
 
 
