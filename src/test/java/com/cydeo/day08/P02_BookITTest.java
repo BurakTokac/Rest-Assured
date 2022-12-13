@@ -31,6 +31,12 @@ public class P02_BookITTest extends BookitTestBase {
     // BookITUtils.getToken(String username,String password)
 
 
+    @DisplayName("GET /api/users/me ")
+    @Test
+    public void test2() {
 
+
+
+    }
 
 }
