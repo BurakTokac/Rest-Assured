@@ -81,13 +81,21 @@ public class P01_SpartanAuthTest extends SpartanAuthTestBase {
      *                  return spartanMap;
      *              }
      *
-     *               public static void  GETSpartans (String role,String password,int statusCode,int id){
+     *               public static void  GETSpartans(String role,String password,int statusCode,int id){
      *
      *                 given().pathParam("id",id)
      *                 .auth().basic(role,password).
      *                 when().delete("/api/spartans/{id}").then().statusCode(statusCode);
      *
      *               }
+     *
+     *     Q --> can we create class in utilities class with loop for each user, admin, guest with passport make more dynamic
+     *            - YES we can but what if first user test is failing.
+     *
+     *            - We should do it --> Data Driven Test
+     *
+     *            - JUnit5 DDT to implement
+     *
      */
 
 
