@@ -5,6 +5,9 @@ import com.cydeo.utilities.BookitTestBase;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.awt.print.Book;
+
 import static org.hamcrest.Matchers.*;
 import static io.restassured.RestAssured.*;
 public class P02_BookITTest extends BookitTestBase {
@@ -34,7 +37,11 @@ public class P02_BookITTest extends BookitTestBase {
     @DisplayName("GET /api/users/me ")
     @Test
     public void test2() {
-
+        System.out.println(accessToken);
+        given().accept(ContentType.JSON)
+                .header("Authorization", accessToken).
+        when().get("/api/users/me").prettyPeek().
+        then().statusCode(200);
 
 
     }
