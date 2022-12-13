@@ -1,19 +1,24 @@
 package com.cydeo.day08;
 
+import com.cydeo.utilities.BookITUtils;
 import com.cydeo.utilities.BookitTestBase;
 import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
+import static org.hamcrest.Matchers.*;
 import static io.restassured.RestAssured.*;
 public class P02_BookITTest extends BookitTestBase {
 
-    String accessToken="Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMTMxMiIsImF1ZCI6InN0dWRlbnQtdGVhbS1sZWFkZXIifQ.ZIHJuDh19eLga3bLP7udnvNtEA0DM_W1H67ah2Zu3Lc";
+
+
+    String email="lfinnisz@yolasite.com";
+    String password="lissiefinnis";
+    String accessToken= BookITUtils.getToken(email,password);
 
     @DisplayName("GET /api/campuses ")
     @Test
     public void test1() {
-
+        System.out.println(accessToken);
         given().accept(ContentType.JSON)
                 .header("Authorization",accessToken).
         when().get("/api/campuses").prettyPeek()
@@ -21,4 +26,11 @@ public class P02_BookITTest extends BookitTestBase {
 
 
     }
+
+    // Create new Util class and it will generate token based on your email and password
+    // BookITUtils.getToken(String username,String password)
+
+
+
+
 }
