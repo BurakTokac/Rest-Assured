@@ -90,7 +90,7 @@ public class SpartanFlow extends SpartanTestBase {
              - verify status code 200
              - verify name is API PUT Flow
      */
-
+    @Order(value = 4)
     @Test
     void getUpdatedSpartan() {
         Response response = SpartanUtil.getSpartan(createdSpartanId);
@@ -98,6 +98,27 @@ public class SpartanFlow extends SpartanTestBase {
         Assertions.assertEquals(putName,response.jsonPath().getString("name"));
 
     }
+
+/*
+ - DELETE  Spartan with spartanID   /api/spartans/{id}
+
+
+             - verify status code 204
+ */
+@Order(value = 5)
+    @Test
+    void delete() {
+        Response response = SpartanUtil.deleteSpartan(createdSpartanId);
+        Assertions.assertEquals(204,response.statusCode());
+    }
+
+    @Order(value = 6)
+    @Test
+    void getDeletedSpartan() {
+        Response response = SpartanUtil.getSpartan(createdSpartanId);
+        Assertions.assertEquals(404,response.statusCode());
+    }
+
 
 
 }

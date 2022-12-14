@@ -65,4 +65,15 @@ public class SpartanUtil {
 
 
     }
+
+    public static Response deleteSpartan(int createdSpartanId) {
+        Response response = given()
+                // .accept(ContentType.JSON)
+                //   .contentType(ContentType.JSON)
+                .pathParam("id",createdSpartanId)
+                .when()
+                .delete("/api/spartans/{id}");
+        return response;
+
+    }
 }
