@@ -52,4 +52,29 @@ public class SpartanFlow extends SpartanTestBase {
         Assertions.assertEquals(createdSpartanName, response.jsonPath().getString("name"));
 
     }
+
+
+    /*
+    - PUT  Spartan with spartanID    /api/spartans/{id}
+
+             Create a spartan Map
+                name = "API PUT Flow"
+                gender="Female"
+                phone=3213213213l
+
+             - verify status code 204
+     */
+
+    @Test
+    void put() {
+        Spartan updatedSpartan=new Spartan();
+
+
+        SpartanUtil.updateSpartan(createdSpartanId,updatedSpartan);
+
+
+
+
+
+    }
 }
