@@ -4,9 +4,9 @@ import com.cydeo.pojo.Spartan;
 import com.cydeo.utilities.SpartanTestBase;
 import com.cydeo.utilities.SpartanUtil;
 import io.restassured.response.Response;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class SpartanFlow extends SpartanTestBase {
 
     /*
@@ -22,29 +22,34 @@ public class SpartanFlow extends SpartanTestBase {
             - take spartanID from response and save as a global variable
 
      */
-    int createdSpartanId;
+    static int createdSpartanId;
+  static   String createdSpartanName;
+
+    @Order(value = 1)
     @Test
     void post() {
         Spartan spartan = SpartanUtil.createSpartan();
         Response response = SpartanUtil.postSpartan(spartan);
-        Assertions.assertEquals(201,response.statusCode());
-        Assertions.assertEquals("A Spartan is Born!",response.jsonPath().getString("success"));
-
-       createdSpartanId =response.jsonPath().getInt("data.id");
+        Assertions.assertEquals(201, response.statusCode());
+        Assertions.assertEquals("A Spartan is Born!", response.jsonPath().getString("success"));
+        createdSpartanName = spartan.getName();
+        createdSpartanId = response.jsonPath().getInt("data.id");
 
     }
 
-/*
-- GET  Spartan with spartanID     /api/spartans/{id}
+    /*
+    - GET  Spartan with spartanID     /api/spartans/{id}
 
 
-             - verify status code 200
-             - verfiy name is API Flow POST
- */
-
+                 - verify status code 200
+                 - verfiy name is API Flow POST
+     */
+    @Order(value = 2)
     @Test
     void getCreatedSpartan() {
-
+        Response response = SpartanUtil.getSpartan(createdSpartanId);
+        Assertions.assertEquals(200, response.statusCode());
+        Assertions.assertEquals(createdSpartanName, response.jsonPath().getString("name"));
 
     }
 }

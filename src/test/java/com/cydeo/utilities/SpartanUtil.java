@@ -39,4 +39,15 @@ public class SpartanUtil {
 
 
     }
+
+    public static Response getSpartan(int createdSpartanId) {
+        Response response = given()
+                .accept(ContentType.JSON)
+             //   .contentType(ContentType.JSON)
+                .pathParam("id",createdSpartanId)
+                .when()
+                .get("/api/spartans/{id}");
+        return response;
+
+    }
 }
