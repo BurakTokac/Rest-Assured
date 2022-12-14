@@ -23,12 +23,15 @@ public class SpartanFlow extends SpartanTestBase {
 
      */
     static int createdSpartanId;
-  static   String createdSpartanName;
+    static String createdSpartanName;
+    static Spartan spartan;
+
+   static String putName;
 
     @Order(value = 1)
     @Test
     void post() {
-        Spartan spartan = SpartanUtil.createSpartan();
+        spartan = SpartanUtil.createSpartan();
         Response response = SpartanUtil.postSpartan(spartan);
         Assertions.assertEquals(201, response.statusCode());
         Assertions.assertEquals("A Spartan is Born!", response.jsonPath().getString("success"));
@@ -64,17 +67,37 @@ public class SpartanFlow extends SpartanTestBase {
 
              - verify status code 204
      */
-
+    @Order(value = 3)
     @Test
     void put() {
-        Spartan updatedSpartan=new Spartan();
+        Spartan updatedSpartan = new Spartan();
+      putName ="Put "+ spartan.getName();
+        updatedSpartan.setName(putName);
+        updatedSpartan.setGender(spartan.getGender());
+        updatedSpartan.setPhone(spartan.getPhone());
 
-
-        SpartanUtil.updateSpartan(createdSpartanId,updatedSpartan);
-
-
-
+        Response response = SpartanUtil.updateSpartan(createdSpartanId, updatedSpartan);
+        Assertions.assertEquals(204,response.statusCode());
 
 
     }
+
+
+    /*
+     - GET  Spartan with spartanID     /api/spartans/{id}
+
+
+             - verify status code 200
+             - verify name is API PUT Flow
+     */
+
+    @Test
+    void getUpdatedSpartan() {
+        Response response = SpartanUtil.getSpartan(createdSpartanId);
+        Assertions.assertEquals(200,response.statusCode());
+        Assertions.assertEquals(putName,response.jsonPath().getString("name"));
+
+    }
+
+
 }

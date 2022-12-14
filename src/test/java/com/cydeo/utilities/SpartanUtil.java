@@ -50,4 +50,19 @@ public class SpartanUtil {
         return response;
 
     }
+
+    public static Response updateSpartan(int createdSpartanId, Spartan updatedSpartan) {
+
+        Response response = given()
+                .accept(ContentType.JSON)
+                  .contentType(ContentType.JSON)
+                .pathParam("id",createdSpartanId)
+                .body(updatedSpartan)
+                .when()
+                .put("/api/spartans/{id}");
+        return response;
+
+
+
+    }
 }
