@@ -46,7 +46,25 @@ public class P03_NewsAPI extends NewsAPITestBase {
 
     }
 
+    /**
+     * TASK 3 —> Authorization in HEADER
+     * - Given query param is q=“bitcoin”
+     * - And header is Authorization=“yourKey”
+     * - When user sent request / everything endpoint - Then status code should be 200
+     * - And each articles contains “bitcoin”
+     */
 
+    @Test
+    public void test3() {
+
+        //d76cdd6edd704269a89f9742c91c75c4
+
+        given().log().uri().queryParam("q","bitcoin")
+                .header("Authorization","d76cdd6edd704269a89f9742c91c75c4").
+                when().get("/everything").prettyPeek().then().statusCode(200);
+
+
+    }
 
 
 
