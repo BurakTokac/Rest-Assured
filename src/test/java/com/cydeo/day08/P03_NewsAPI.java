@@ -66,6 +66,24 @@ public class P03_NewsAPI extends NewsAPITestBase {
 
     }
 
+    /**
+     * TASK 4 —> Authorization in HEADER
+     * - Given query param is country=“us”
+     * - And header is Bearer “yourKey”
+     * - When user sent request / top-headlines endpoint - Then status code should be 200
+     * - And print out all sources names
+     */
 
+    @Test
+    public void test4() {
+
+        //d76cdd6edd704269a89f9742c91c75c4
+
+        given().log().uri().queryParam("country","us")
+                .header("Authorization","Bearer d76cdd6edd704269a89f9742c91c75c4").
+                when().get("/top-headlines").prettyPeek().then().statusCode(200);
+
+
+    }
 
 }
