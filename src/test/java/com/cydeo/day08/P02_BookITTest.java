@@ -6,7 +6,7 @@ import io.restassured.http.ContentType;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.awt.print.Book;
+
 
 import static org.hamcrest.Matchers.*;
 import static io.restassured.RestAssured.*;
@@ -42,6 +42,19 @@ public class P02_BookITTest extends BookitTestBase {
                 .header("Authorization", accessToken).
         when().get("/api/users/me").prettyPeek().
         then().statusCode(200);
+
+
+    }
+
+    @DisplayName("GET /api/users/me ")
+    @Test
+    public void test3() {
+        System.out.println(accessToken);
+        given().accept(ContentType.JSON)
+                .auth().oauth2(accessToken).
+                //.header("Authorization", accessToken).
+                when().get("/api/users/me").prettyPeek().
+                then().statusCode(200);
 
 
     }
