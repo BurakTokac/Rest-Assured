@@ -27,6 +27,12 @@ public class P03_MovieXML{
         // get me year title
         System.out.println(xmlPath.getString("root.movie.@title"));
 
+        // get me year genre
+
+        // get me year writer
+
+
+
 
     }
 }
