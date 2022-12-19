@@ -41,7 +41,20 @@ public class P04_JsonSchemaValidation extends SpartanTestBase {
                 .body(JsonSchemaValidator.matchesJsonSchema(new File("src/test/resources/SingleSpartanSchema.json")));
     }
 
+    @DisplayName("GET /api/spartans/search to validate with JsonSchemaValidator matchesJsonSchema")
+    @Test
+    public void test3() {
 
+        given().accept(ContentType.JSON)
+                .when().get("/api/spartans/search").
+                then().statusCode(200)
+                .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("SearchSpartansSchema.json"));
+
+    }
+
+    /**
+     *
+     */
 
 
 
