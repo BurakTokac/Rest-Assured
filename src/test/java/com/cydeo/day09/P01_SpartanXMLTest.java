@@ -1,6 +1,7 @@
 package com.cydeo.day09;
 
 import com.cydeo.utilities.SpartanAuthTestBase;
+import io.restassured.http.ContentType;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
@@ -21,7 +22,13 @@ public class P01_SpartanXMLTest extends SpartanAuthTestBase {
     @Test
     public void test1() {
 
-
+        given().accept(ContentType.XML)
+                .auth().basic("admin","admin").
+        when().get("/api/spartans").prettyPeek().
+        then().statusCode(200)
+                .contentType(ContentType.XML)
+                .body("List.item[0].name",is("John Dan"))
+                .body("List.item[0].gender",is("Male"));
 
 
     }
