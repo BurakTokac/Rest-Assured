@@ -2,6 +2,8 @@ package com.cydeo.day09;
 
 import com.cydeo.utilities.SpartanAuthTestBase;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.*;
@@ -32,4 +34,18 @@ public class P01_SpartanXMLTest extends SpartanAuthTestBase {
 
 
     }
+
+
+
+
+   @DisplayName("GET /api/spartans with using XMLPath")
+    @Test
+    public void test2() {
+
+       Response response = given().accept(ContentType.XML)
+               .auth().basic("admin", "admin").
+               when().get("/api/spartans");
+
+
+   }
 }
