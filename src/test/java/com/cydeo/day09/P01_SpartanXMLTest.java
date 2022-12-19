@@ -1,11 +1,14 @@
 package com.cydeo.day09;
 
+import com.cydeo.pojo.Spartan;
 import com.cydeo.utilities.SpartanAuthTestBase;
 import io.restassured.http.ContentType;
 import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -55,17 +58,22 @@ public class P01_SpartanXMLTest extends SpartanAuthTestBase {
        // get first spartan name
        System.out.println("xmlPath.getString(\"List.item[0].name\") = " + xmlPath.getString("List.item[0].name"));
 
-       // get me 3rd spartan name
+       // get me 2nd spartan name
+
+       System.out.println("xmlPath.getString(\"List.item[1].name\") = " + xmlPath.getString("List.item[1].name"));
 
        // get me last spartan name
+       System.out.println("xmlPath.getString(\"List.item[-1].name\") = " + xmlPath.getString("List.item[-1].name"));
 
        // Get all the spartan names
+       List<String> nameList = xmlPath.getList("List.item.name");
+       System.out.println("nameList = " + nameList);
 
        // how many spartans we have
+       List<Spartan> allSpartans = xmlPath.getList("List.item");
+       // Deserilization still possbile to do it.We should use another dependencies or use some Java logic to store into POJO
+       // We are not gonna touch this
 
-
-
-
-
+       System.out.println("allSpartans.size() = " + allSpartans.size());
    }
 }
