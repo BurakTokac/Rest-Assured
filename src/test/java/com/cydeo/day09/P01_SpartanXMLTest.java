@@ -2,6 +2,7 @@ package com.cydeo.day09;
 
 import com.cydeo.utilities.SpartanAuthTestBase;
 import io.restassured.http.ContentType;
+import io.restassured.path.xml.XmlPath;
 import io.restassured.response.Response;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -45,6 +46,25 @@ public class P01_SpartanXMLTest extends SpartanAuthTestBase {
        Response response = given().accept(ContentType.XML)
                .auth().basic("admin", "admin").
                when().get("/api/spartans");
+
+
+       // GET response as XML format and save into XMLPath
+       XmlPath xmlPath = response.xmlPath();
+
+
+       // get first spartan name
+       System.out.println("xmlPath.getString(\"List.item[0].name\") = " + xmlPath.getString("List.item[0].name"));
+
+       // get me 3rd spartan name
+
+       // get me last spartan name
+
+       // Get all the spartan names
+
+       // how many spartans we have
+
+
+
 
 
    }
