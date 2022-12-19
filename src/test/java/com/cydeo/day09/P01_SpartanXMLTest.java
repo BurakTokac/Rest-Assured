@@ -81,7 +81,7 @@ public class P01_SpartanXMLTest extends SpartanAuthTestBase {
         * Do we know how many spartan we have ?
         *   - Can we create Loop ?
         *       - yes
-        *      String spartanName xmlPath.getString("List.item[i].name")
+        *      String spartanName=xmlPath.getString("List.item[i].name")
         *
         */
 
