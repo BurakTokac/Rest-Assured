@@ -1,8 +1,5 @@
-package com.cydeo.day10;
+package com.cydeo.day12;
 
-import io.restassured.internal.common.assertion.Assertion;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package com.cydeo.day10;
+package com.cydeo.day12;
 
 import org.junit.jupiter.api.*;
 
