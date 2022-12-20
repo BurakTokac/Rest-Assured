@@ -41,10 +41,18 @@ public class P03_ValueSourceTest {
 
         System.out.println(zipCode);
 
-        given().baseUri("https://api.zippopotam.us")
+        given().baseUri("https://api.zippopotam.us") // same url for all API request
                 .pathParam("zipCode",zipCode).
         when().get("/us/{zipCode}").prettyPeek().
         then().statusCode(200);
 
     }
+
+    /*
+       IP:8000  --> baseURL
+       /api     --> basePath
+       /spartans -> endpoint
+
+
+     */
 }
