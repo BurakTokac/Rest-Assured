@@ -15,7 +15,6 @@ public class P07_ExcelUtilPractice {
 
         ExcelUtil library=new ExcelUtil("src/test/resources/Library.xlsx","Library1-short");
 
-
         List<Map<String, String>> alluserInfo = library.getDataList();
 
         for (Map<String, String> eachUser : alluserInfo) {
