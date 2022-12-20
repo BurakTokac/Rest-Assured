@@ -1,5 +1,6 @@
 package com.cydeo.day12;
 
+import com.cydeo.utilities.ExcelUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -7,6 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Stream;
 
 public class P06_MethodSourceTest {
@@ -22,6 +24,25 @@ public class P06_MethodSourceTest {
 
     }
 
+    @ParameterizedTest
+    @MethodSource("getExcelData")
+    public void credentailsTest(Map<String, String> userInfo){
+
+        System.out.println(userInfo);
+        System.out.println("userInfo.get(\"Email\") = " + userInfo.get("Email"));
+        System.out.println("userInfo.get(\"Password\") = " + userInfo.get("Password"));
+        System.out.println("---------");
+
+    }
+
+
+
+    public static  List<Map<String, String>> getExcelData() {
+
+        ExcelUtil library=new ExcelUtil("src/test/resources/Library.xlsx","Library1-short");
+
+         return library.getDataList();
+    }
 
     public static List<String> getNames(){
 
@@ -41,4 +62,14 @@ public class P06_MethodSourceTest {
          */
 
     }
+
+
+
+
+
+
+
+
+
+
 }
