@@ -39,6 +39,9 @@ public class P02_Junit5Assertions {
      * - Test Execution will continue till end of the code fragment even if one the assertion is failing
      *
      *
+     *   TESTNG --> SoftAssert softAssert=new SoftAssert()
+     *                  softAssert.assertEquals()..
+     *                  softAssert.assertAll()
      */
 
     @Test
