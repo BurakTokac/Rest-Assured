@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
-
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
 public class P03_ValueSourceTest {
 
     @ParameterizedTest
@@ -34,9 +35,16 @@ public class P03_ValueSourceTest {
     // check status code 200
 
 
+    @ParameterizedTest
+    @ValueSource(ints = {22030,22031, 22032, 22033 , 22034, 22035, 22036})
+    public void test3(int zipCode) {
 
+        System.out.println(zipCode);
 
+        given().baseUri("https://api.zippopotam.us")
+                .pathParam("zipCode",zipCode).
+        when().get("/us/{zipCode}").prettyPeek().
+        then().statusCode(200);
 
-
-
+    }
 }
