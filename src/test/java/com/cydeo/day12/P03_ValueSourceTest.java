@@ -17,12 +17,26 @@ public class P03_ValueSourceTest {
     }
 
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "{index} name is {0}")
     @ValueSource(strings = {"Mike","Rose","Caberly","Kimberly","TJ","King"})
     public void test2(String name) {
 
         System.out.println("name = " + name);
+        Assertions.assertTrue(name.length()>4);
 
+    // {index} --> it wiill print out in console as test name with their index
+    //  {0}    --> will get data from provided set of data.O point first set of data
 
     }
+
+    // SEND GET REQUEST TO https://api.zippopotam.us/us/{zipcode}
+    // with these zipcodes 22030,22031, 22032, 22033 , 22034, 22035, 22036
+    // check status code 200
+
+
+
+
+
+
+
 }
