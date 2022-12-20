@@ -19,6 +19,7 @@ public class P06_MethodSourceTest {
     public void test1(String name) {
 
         System.out.println("name = " + name);
+
     }
 
 
@@ -27,5 +28,17 @@ public class P06_MethodSourceTest {
         List<String> nameList= Arrays.asList("Kimberly","King","TJ","Bond");
 
         return nameList;
+
+        /*
+          - Can we read data from database
+               - Create conn / run query / store them and feed Parameterized
+
+          - Can we get data from 3rd party APIs (that we consume to get data and use into our API )
+                - use Java knowledge + RestAssured
+
+           - This makes method source more power than other
+
+         */
+
     }
 }
