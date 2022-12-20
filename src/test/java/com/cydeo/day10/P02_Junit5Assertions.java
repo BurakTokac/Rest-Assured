@@ -2,6 +2,8 @@ package com.cydeo.day10;
 
 import io.restassured.internal.common.assertion.Assertion;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -39,11 +41,14 @@ public class P02_Junit5Assertions {
      * - Test Execution will continue till end of the code fragment even if one the assertion is failing
      *
      *
-     *   TESTNG --> SoftAssert softAssert=new SoftAssert()
+     *     -------  TESTNG --> SoftAssert softAssert=new SoftAssert() ----------
      *                  softAssert.assertEquals()..
      *                  softAssert.assertAll()
+     *
+     *   ---------------------------------------------
      */
 
+    @DisplayName("JUNIT5 SOFT ASSERTION IS IMPLEMENTED")
     @Test
     public  void softAssert() {
 
