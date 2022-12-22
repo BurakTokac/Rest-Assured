@@ -9,6 +9,7 @@ import static io.restassured.RestAssured.*;
 public abstract class SpartanNewTestBase {
 
     public static RequestSpecification reqSpec;
+    public static RequestSpecification reqUserSpec;
 
     public static ResponseSpecification resSpec;
 
@@ -23,6 +24,10 @@ public abstract class SpartanNewTestBase {
 
         reqSpec = given().log().all().accept(ContentType.JSON)
                 .auth().basic("admin", "admin");
+
+
+        reqUserSpec = given().log().all().accept(ContentType.JSON)
+                .auth().basic("user", "user");
 
 
         resSpec =
