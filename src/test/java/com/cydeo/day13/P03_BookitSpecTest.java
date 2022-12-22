@@ -25,4 +25,16 @@ public class P03_BookitSpecTest extends BookitTestBase {
             when().get("/api/users/me").prettyPeek().
             then().statusCode(200).contentType(ContentType.JSON);
     }
+
+    @Test
+    public void test2() {
+
+        given().spec(BookITUtils.getReqSpec("teacher")).
+                when().get("/api/users/me").prettyPeek().
+                then().spec(BookITUtils.getResSpec(200));
+    }
+
+
+
+
 }

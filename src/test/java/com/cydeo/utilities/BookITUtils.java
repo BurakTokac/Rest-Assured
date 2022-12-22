@@ -1,5 +1,7 @@
 package com.cydeo.utilities;
 import io.restassured.http.ContentType;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
 import org.junit.jupiter.api.Assertions;
 
 import java.util.HashMap;
@@ -118,6 +120,24 @@ public class BookITUtils {
 
     }
 
+
+
+    public static RequestSpecification getReqSpec(String role){
+
+        RequestSpecification reqSpec = given().log().all()
+                .header("Authorization", getTokenByRole(role))
+                .accept(ContentType.JSON);
+
+        return reqSpec;
+
+    }
+
+
+    public static ResponseSpecification getResSpec(int statusCode){
+
+     return   expect().statusCode(statusCode)
+                .contentType(ContentType.JSON);
+  }
 
 
 }
