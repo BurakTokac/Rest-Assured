@@ -6,6 +6,8 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 
 import javax.swing.text.AbstractDocument;
 
@@ -58,6 +60,9 @@ public class P02_SpartanSpecTest extends SpartanNewTestBase {
     }
 
 
+
+
+
     /**
      *  Create GET_RBAC.csv
      *   username,password,id,statuscode
@@ -69,6 +74,20 @@ public class P02_SpartanSpecTest extends SpartanNewTestBase {
      *
      *
      */
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/GET_RBAC.csv",numLinesToSkip = 1)
+    public void getSingleSpartan_GETRBACS(String user,String pass,int id,int statusCode){
+
+        given().spec(dynamicReqSpec(user,pass))
+                .pathParam("id",id).
+                when().get("/spartans/{id}").prettyPeek().
+                then().spec(dynamicResSpec(statusCode));
+
+    }
+
+
+
 
     /**
      *  Create DELETE_RBAC.csv
@@ -82,6 +101,17 @@ public class P02_SpartanSpecTest extends SpartanNewTestBase {
      *
      *
      */
+
+    @ParameterizedTest
+    @CsvFileSource(resources = "/DELETE_RBAC.csv",numLinesToSkip = 1)
+    public void deleteSingleSpartan_DELETERBACS(String user,String pass,int id,int statusCode){
+
+        given().spec(dynamicReqSpec(user,pass))
+                .pathParam("id",id).
+                when().delete("/spartans/{id}").prettyPeek().
+                then().spec(dynamicResSpec(statusCode));
+
+    }
 
 
 
