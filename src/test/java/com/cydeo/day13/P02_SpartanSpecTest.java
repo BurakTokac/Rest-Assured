@@ -70,6 +70,21 @@ public class P02_SpartanSpecTest extends SpartanNewTestBase {
      *
      */
 
+    /**
+     *  Create DELETE_RBAC.csv
+     *   username,password,id,statuscode
+     *
+     *    editor,editor,3,403
+     *    user,user,3,403
+     *    admin,admin,3,204
+     *
+     *  Create a parameterized test to check RBAC for GET method
+     *
+     *
+     */
+
+
+
 
 
 }
