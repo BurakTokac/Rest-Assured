@@ -31,7 +31,8 @@ public class P03_BookitSpecTest extends BookitTestBase {
 
         given().spec(BookITUtils.getReqSpec("teacher")).
                 when().get("/api/users/me").prettyPeek().
-                then().spec(BookITUtils.getResSpec(200));
+                then().spec(BookITUtils.getResSpec(200))
+                .body("firstName",is("Barbabas"));
     }
 
 
