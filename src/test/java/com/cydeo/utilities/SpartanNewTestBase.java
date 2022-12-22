@@ -34,4 +34,24 @@ public abstract class SpartanNewTestBase {
                 expect().statusCode(200)
                         .contentType(ContentType.JSON);
     }
+
+    public static RequestSpecification dynamicReqSpec(String username,String password){
+
+        return      given()
+                          .log().all()
+                          .accept(ContentType.JSON)
+                          .auth().basic(username, password);
+    }
+
+
+    public static ResponseSpecification dynamicResSpec(int statusCode){
+
+        return      expect()
+                    .statusCode(statusCode)
+                    .contentType(ContentType.JSON);
+    }
+
+
+
+
 }
