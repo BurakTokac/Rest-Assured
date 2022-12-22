@@ -12,7 +12,6 @@ public abstract class SpartanNewTestBase {
         baseURI="http://3.80.111.193";
         port = 7000;
         basePath="/api";
-
         // baseURI+port+basePath
     }
 }
