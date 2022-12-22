@@ -108,7 +108,7 @@ public class P02_SpartanSpecTest extends SpartanNewTestBase {
 
         given().spec(dynamicReqSpec(user,pass))
                 .pathParam("id",id).
-                when().delete("/spartans/{id}").prettyPeek().
+                when().delete("/spartans/{id}").
                 then().spec(dynamicResSpec(statusCode));
 
     }
