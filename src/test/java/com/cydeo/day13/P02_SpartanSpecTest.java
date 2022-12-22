@@ -46,4 +46,14 @@ public class P02_SpartanSpecTest extends SpartanNewTestBase {
                         .body("id",is(3));
 
     }
+
+    @Test
+    public void getSingleSpartanAsUser(){
+
+        given().spec(dynamicReqSpec("user","user"))
+                .pathParam("id",3).
+        when().get("/spartans/{id}").prettyPeek().
+        then().spec(dynamicResSpec(200));
+
+    }
 }
