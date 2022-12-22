@@ -56,4 +56,20 @@ public class P02_SpartanSpecTest extends SpartanNewTestBase {
         then().spec(dynamicResSpec(200));
 
     }
+
+
+    /**
+     *  Create GET_RBAC.csv
+     *   username,password,id,statuscode
+     *    admin,admin,3,200
+     *    editor,editor,3,200
+     *    user,user,3,200
+     *
+     *  Create a parameterized test to check RBAC for GET method
+     *
+     *
+     */
+
+
+
 }
