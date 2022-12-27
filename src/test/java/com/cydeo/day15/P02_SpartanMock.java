@@ -34,7 +34,7 @@ public class  P02_SpartanMock extends SpartanTestBase {
         // Hello from Sparta
         Assertions.assertEquals("Hello from Sparta",response.asString());
 
-        log.info("GET /api/hello");
+        //log.info("GET /api/hello");
 
     }
 
@@ -49,7 +49,7 @@ public class  P02_SpartanMock extends SpartanTestBase {
                 .body("id",everyItem(notNullValue()))
                 .contentType(ContentType.JSON);
 
-        log.info("GET /api/spartans");
+        //log.info("GET /api/spartans");
         // check status code
         // check each spartan has id
 
