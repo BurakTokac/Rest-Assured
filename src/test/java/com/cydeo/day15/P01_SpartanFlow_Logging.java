@@ -3,6 +3,7 @@ package com.cydeo.day15;
 import com.cydeo.pojo.Spartan;
 import com.cydeo.utilities.SpartanTestBase;
 import io.restassured.http.ContentType;
+import io.restassured.response.Response;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -29,6 +30,8 @@ public class P01_SpartanFlow_Logging extends SpartanTestBase {
         spartanPost.setGender("Male");
         spartanPost.setPhone(8877445596l);
 
+        log.info("POST SPARTAN ---> "+spartanPost);
+
 
         spartanID = given().accept(ContentType.JSON)
                 .contentType(ContentType.JSON)
@@ -39,7 +42,7 @@ public class P01_SpartanFlow_Logging extends SpartanTestBase {
                 .body("success", is("A Spartan is Born!")).extract().jsonPath().getInt("data.id");
 
 
-        System.out.println(spartanID + " is created");
+        log.info(spartanID + " is created");
 
 
     }
@@ -47,13 +50,16 @@ public class P01_SpartanFlow_Logging extends SpartanTestBase {
     @Test
     public void GETSpartan_01() {
 
-        given().accept(ContentType.JSON)
+        Response response = given().accept(ContentType.JSON)
                 .pathParam("id", spartanID).
                 when()
                 .get("/api/spartans/{id}").
                 then()
                 .statusCode(200)
-                .body("name",is(spartanPost.getName()));
+                .body("name", is(spartanPost.getName())).extract().response();
+
+        log.info("GET SPARTAN --> "+response.asString());
+
     }
 
     @Order(3)
@@ -65,6 +71,8 @@ public class P01_SpartanFlow_Logging extends SpartanTestBase {
         spartanPut.setGender("Male");
         spartanPut.setPhone(8877445596l);
 
+        log.info("PUT SPARTAN --> "+spartanPut);
+
         given()
                 .contentType(ContentType.JSON)
                 .pathParam("id", spartanID)
@@ -74,7 +82,7 @@ public class P01_SpartanFlow_Logging extends SpartanTestBase {
                 .statusCode(204);
 
 
-        System.out.println(spartanID + " is updated");
+        log.info(spartanID + " is updated");
 
 
     }
@@ -84,14 +92,16 @@ public class P01_SpartanFlow_Logging extends SpartanTestBase {
     @Test
     public void GETSpartan_02() {
 
-        given().accept(ContentType.JSON)
+
+        Response response = given().accept(ContentType.JSON)
                 .pathParam("id", spartanID).
                 when()
                 .get("/api/spartans/{id}").
                 then()
                 .statusCode(200)
-                .body("name", is(spartanPut.getName()));
+                .body("name", is(spartanPut.getName())).extract().response();
 
+        log.info("GET SPARTAN --> "+response.asString());
 
     }
     @Order(5)
@@ -104,7 +114,7 @@ public class P01_SpartanFlow_Logging extends SpartanTestBase {
                 .then().statusCode(204);
 
 
-        System.out.println(spartanID + " is deleted");
+        log.info(spartanID + " is deleted");
 
 
     }
@@ -112,14 +122,15 @@ public class P01_SpartanFlow_Logging extends SpartanTestBase {
     @Test
     public void GETSpartan() {
 
-        given().accept(ContentType.JSON)
+        Response response = given().accept(ContentType.JSON)
                 .pathParam("id", spartanID).
                 when()
                 .get("/api/spartans/{id}").
                 then()
-                .statusCode(404);
+                .statusCode(404).extract().response();
 
-        System.out.println(spartanID + " is not exist");
+        log.info("GET SPARTAN is NOT FOUND --> "+response.asString());
+        log.info(spartanID + " is not exist");
 
     }
 
